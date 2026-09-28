@@ -1,0 +1,9 @@
+## @file
+#  libkrun x86_64 OVMF flash layout.
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
+# The shared layout selects Krun-only drivers and omits unavailable PCI devices
+# when KRUN_ENABLE is set by OvmfKrunX64.dsc.
+!include OvmfPkg/OvmfPkgX64.fdf

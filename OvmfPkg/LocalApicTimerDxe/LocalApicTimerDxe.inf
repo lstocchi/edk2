@@ -40,5 +40,7 @@
   gEfiTimerArchProtocolGuid     ## PRODUCES
 [Pcd]
   gEfiMdePkgTokenSpaceGuid.PcdFSBClock  ## CONSUMES
+[FeaturePcd]
+  gUefiOvmfPkgTokenSpaceGuid.PcdKrunEnabled
 [Depex]
   gEfiCpuArchProtocolGuid

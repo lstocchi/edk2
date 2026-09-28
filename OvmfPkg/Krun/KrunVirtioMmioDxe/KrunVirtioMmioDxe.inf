@@ -1,0 +1,42 @@
+## @file
+#  Enumerate libkrun's fixed virtio-mmio transport range.
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = KrunVirtioMmioDxe
+  FILE_GUID                      = 7c7e8b4c-2af5-4f20-9363-a8d53c7e8836
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = InitializeKrunVirtioMmioDxe
+
+[Sources]
+  KrunVirtioMmioDxe.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  OvmfPkg/OvmfPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  DebugLib
+  DevicePathLib
+  IoLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  UefiLib
+  VirtioMmioDeviceLib
+
+[Guids]
+  gVirtioMmioTransportGuid
+
+[Protocols]
+  gEfiDevicePathProtocolGuid
+  gVirtioDeviceProtocolGuid
+  gEfiDriverBindingProtocolGuid
+
+[Depex]
+  TRUE

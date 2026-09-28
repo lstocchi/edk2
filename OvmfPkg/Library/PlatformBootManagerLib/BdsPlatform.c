@@ -1462,6 +1462,10 @@ PciAcpiInitialization (
 {
   UINTN  Pmba;
 
+  if (FeaturePcdGet (PcdKrunEnabled)) {
+    return;
+  }
+
   //
   // Query Host Bridge DID to determine platform type
   //

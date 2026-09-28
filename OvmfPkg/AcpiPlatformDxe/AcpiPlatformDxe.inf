@@ -26,6 +26,7 @@
   BootScript.c
   CloudHvAcpi.c
   EntryPoint.c
+  KrunAcpi.c
   PciDecoding.c
   QemuFwCfgAcpi.c
 
@@ -54,6 +55,7 @@
   gQemuAcpiTableNotifyProtocolGuid              # PROTOCOL PRODUCES
 
 [Guids]
+  gEfiAcpi20TableGuid
   gRootBridgesConnectedEventGroupGuid
   gUefiOvmfPkgTdxAcpiHobGuid
 
@@ -63,6 +65,9 @@
   gUefiOvmfPkgTokenSpaceGuid.PcdXenPvhStartOfDayStructPtr
   gUefiOvmfPkgTokenSpaceGuid.PcdXenPvhStartOfDayStructPtrSize
   gEfiMdePkgTokenSpaceGuid.PcdConfidentialComputingGuestAttr
+
+[FeaturePcd]
+  gUefiOvmfPkgTokenSpaceGuid.PcdKrunEnabled
 
 [Depex]
   gEfiAcpiTableProtocolGuid

@@ -71,11 +71,10 @@ AcpiPlatformEntryPoint (
   // install the tables at once, and let the entry point's return code reflect
   // the full functionality.
   //
-  if (PcdGetBool (PcdPciDisableBusEnumeration)) {
+  if (FeaturePcdGet (PcdKrunEnabled) || PcdGetBool (PcdPciDisableBusEnumeration)) {
     DEBUG ((
       DEBUG_INFO,
-      "%a: PCI or its enumeration disabled, installing "
-      "ACPI tables\n",
+      "%a: krun enabled or PCI enumeration disabled, installing ACPI tables immediately\n",
       __func__
       ));
     return InstallAcpiTables (FindAcpiTableProtocol ());

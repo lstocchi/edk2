@@ -72,6 +72,9 @@
 [Pcd.IA32, Pcd.X64]
   gEfiMdePkgTokenSpaceGuid.PcdFSBClock
 
+[FeaturePcd]
+  gUefiOvmfPkgTokenSpaceGuid.PcdKrunEnabled
+
 [Protocols]
   gEfiDecompressProtocolGuid
   gEfiPciRootBridgeIoProtocolGuid

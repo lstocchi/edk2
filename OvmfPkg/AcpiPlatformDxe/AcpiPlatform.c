@@ -32,7 +32,9 @@ InstallAcpiTables (
   UINT16      HostBridgeDevId;
 
   HostBridgeDevId = PcdGet16 (PcdOvmfHostBridgePciDevId);
-  if (HostBridgeDevId == CLOUDHV_DEVICE_ID) {
+  if (FeaturePcdGet (PcdKrunEnabled)) {
+    Status = InstallKrunTables (AcpiTable);
+  } else if (HostBridgeDevId == CLOUDHV_DEVICE_ID) {
     if (CC_GUEST_IS_TDX (PcdGet64 (PcdConfidentialComputingGuestAttr))) {
       Status = InstallCloudHvTablesTdx (AcpiTable);
     } else {

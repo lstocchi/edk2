@@ -133,6 +133,7 @@
   gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSnpSecretsSize
 
 [FeaturePcd]
+  gUefiOvmfPkgTokenSpaceGuid.PcdKrunEnabled
   gUefiOvmfPkgTokenSpaceGuid.PcdCsmEnable
   gUefiOvmfPkgTokenSpaceGuid.PcdSmmSmramRequire
 

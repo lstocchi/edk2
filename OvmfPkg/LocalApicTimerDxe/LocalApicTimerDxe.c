@@ -344,11 +344,15 @@ TimerDriverInitialize (
                    );
   ASSERT_EFI_ERROR (Status);
 
-  //
-  // Force the timer to be enabled at its default period
-  //
-  Status = TimerDriverSetTimerPeriod (&mTimer, DEFAULT_TIMER_TICK_DURATION);
-  ASSERT_EFI_ERROR (Status);
+  if (!FeaturePcdGet (PcdKrunEnabled)) {
+    //
+    // Force the timer to be enabled at its default period.
+    // WHP delivers LAPIC timer interrupts while UEFI is at TPL_HIGH_LEVEL,
+    // which violates DXE's interrupt masking contract.
+    //
+    Status = TimerDriverSetTimerPeriod (&mTimer, DEFAULT_TIMER_TICK_DURATION);
+    ASSERT_EFI_ERROR (Status);
+  }
 
   //
   // Install the Timer Architectural Protocol onto a new handle

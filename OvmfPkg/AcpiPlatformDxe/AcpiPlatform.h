@@ -33,6 +33,12 @@ InstallCloudHvTables (
 
 EFI_STATUS
 EFIAPI
+InstallKrunTables (
+  IN   EFI_ACPI_TABLE_PROTOCOL  *AcpiProtocol
+  );
+
+EFI_STATUS
+EFIAPI
 InstallQemuFwCfgTables (
   IN   EFI_ACPI_TABLE_PROTOCOL  *AcpiProtocol
   );

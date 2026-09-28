@@ -360,7 +360,11 @@ InitializePlatform (
   //
   // Query Host Bridge DID
   //
-  PlatformInfoHob->HostBridgeDevId = PciRead16 (OVMF_HOSTBRIDGE_DID);
+  if (FeaturePcdGet (PcdKrunEnabled)) {
+    PlatformInfoHob->HostBridgeDevId = 0xffff;
+  } else {
+    PlatformInfoHob->HostBridgeDevId = PciRead16 (OVMF_HOSTBRIDGE_DID);
+  }
   AddressWidthInitialization (PlatformInfoHob);
 
   MaxCpuCountInitialization (PlatformInfoHob);
