@@ -209,6 +209,14 @@ VirtioFsInit (
     goto Failed;
   }
 
+  Status = VirtioFs->Virtio->SetQueueNum (
+                                VirtioFs->Virtio,
+                                VirtioFs->QueueSize
+                                );
+  if (EFI_ERROR (Status)) {
+    goto Failed;
+  }
+
   //
   // 7.d. [...] population of virtqueues [...]
   //
