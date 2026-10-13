@@ -257,11 +257,18 @@ INF  OvmfPkg/PciHotPlugInitDxe/PciHotPlugInit.inf
 INF  MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
 INF  MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
 !endif
+!if $(KRUN_ENABLE) == TRUE
+INF  MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
+INF  MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
+!endif
 INF  MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
 INF  MdeModulePkg/Universal/Metronome/Metronome.inf
 INF  PcAtChipsetPkg/PcatRealTimeClockRuntimeDxe/PcatRealTimeClockRuntimeDxe.inf
 
 !if $(KRUN_ENABLE) != TRUE
+INF  OvmfPkg/VirtioPciDeviceDxe/VirtioPciDeviceDxe.inf
+!endif
+!if $(KRUN_ENABLE) == TRUE
 INF  OvmfPkg/VirtioPciDeviceDxe/VirtioPciDeviceDxe.inf
 !endif
 INF  OvmfPkg/Virtio10Dxe/Virtio10.inf

@@ -648,19 +648,15 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|0
   gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|0
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiS3Enable|FALSE
-  gEfiMdeModulePkgTokenSpaceGuid.PcdPciDisableBusEnumeration|TRUE
+  gEfiMdeModulePkgTokenSpaceGuid.PcdPciDisableBusEnumeration|FALSE
+  gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio32Base|0xE0100000
+  gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio32Size|0x1EB00000
   gUefiOvmfPkgTokenSpaceGuid.PcdVideoResolutionSource|0
   gUefiOvmfPkgTokenSpaceGuid.PcdOvmfHostBridgePciDevId|0
   gUefiOvmfPkgTokenSpaceGuid.PcdPciIoBase|0x0
   gUefiOvmfPkgTokenSpaceGuid.PcdPciIoSize|0x0
-  gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio32Base|0x0
-  gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio32Size|0x0
   gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio64Base|0x0
-!ifdef $(CSM_ENABLE)
   gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio64Size|0x0
-!else
-  gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio64Size|0x800000000
-!endif
 
   gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut|0
 
@@ -853,16 +849,16 @@
 !endif
   # OvmfPkg/IncompatiblePciDeviceSupportDxe/IncompatiblePciDeviceSupport.inf
   # OvmfPkg/PciHotPlugInitDxe/PciHotPlugInit.inf
-  # MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf {
-  #   <LibraryClasses>
-  #     PciHostBridgeLib|OvmfPkg/Library/PciHostBridgeLib/PciHostBridgeLib.inf
-  #     PciHostBridgeUtilityLib|OvmfPkg/Library/PciHostBridgeUtilityLib/PciHostBridgeUtilityLib.inf
-  #     NULL|OvmfPkg/Library/PlatformHasIoMmuLib/PlatformHasIoMmuLib.inf
-  # }
-  # MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf {
-  #   <LibraryClasses>
-  #     PcdLib|MdePkg/Library/DxePcdLib/DxePcdLib.inf
-  # }
+  MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf {
+    <LibraryClasses>
+      PciHostBridgeLib|OvmfPkg/Library/PciHostBridgeLib/PciHostBridgeLib.inf
+      PciHostBridgeUtilityLib|OvmfPkg/Library/PciHostBridgeUtilityLib/PciHostBridgeUtilityLib.inf
+      NULL|OvmfPkg/Library/PlatformHasIoMmuLib/PlatformHasIoMmuLib.inf
+  }
+  MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf {
+    <LibraryClasses>
+      PcdLib|MdePkg/Library/DxePcdLib/DxePcdLib.inf
+  }
   MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
   MdeModulePkg/Universal/Metronome/Metronome.inf
   PcAtChipsetPkg/PcatRealTimeClockRuntimeDxe/PcatRealTimeClockRuntimeDxe.inf
@@ -890,13 +886,14 @@
     <LibraryClasses>
       NULL|OvmfPkg/Library/BlobVerifierLibNull/BlobVerifierLibNull.inf
   }
-  # OvmfPkg/VirtioPciDeviceDxe/VirtioPciDeviceDxe.inf
+  OvmfPkg/VirtioPciDeviceDxe/VirtioPciDeviceDxe.inf
+  OvmfPkg/Krun/KrunVirtioMmioDxe/KrunVirtioMmioDxe.inf
   OvmfPkg/Virtio10Dxe/Virtio10.inf
   OvmfPkg/VirtioBlkDxe/VirtioBlk.inf
   OvmfPkg/VirtioScsiDxe/VirtioScsi.inf
   OvmfPkg/VirtioRngDxe/VirtioRng.inf
   OvmfPkg/VirtioSerialDxe/VirtioSerial.inf
-  OvmfPkg/Krun/KrunVirtioMmioDxe/KrunVirtioMmioDxe.inf
+  # The PCI bus enumerates and connects virtio devices in this configuration.
 !if $(PVSCSI_ENABLE) == TRUE
   OvmfPkg/PvScsiDxe/PvScsiDxe.inf
 !endif
